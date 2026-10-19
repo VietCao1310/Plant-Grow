@@ -319,4 +319,30 @@ public class PotSessionDAO {
         }
         return null;
     }
+    
+    
+        /**
+     * The newest `limit` sessions of one pot, OLDEST FIRST, for the chart.
+     * from can be null (no lower limit on the time).
+     */
+    public List<PotSession> forChart(int potNo, Timestamp from, int limit) {
+        List<PotSession> out = new ArrayList<PotSession>();
+        String sql = SELECT_BASE + "WHERE s.pot_no = ? "
+                   + (from != null ? "AND s.measured_at >= ? " : "")
+                   + "ORDER BY s.measured_at DESC, s.session_id DESC OFFSET 0 ROWS FETCH NEXT ? ROWS ONLY";
+        try (Connection cn = DBContext.getConnection();
+             PreparedStatement ps = cn.prepareStatement(sql)) {
+            int i = 1;
+            ps.setInt(i++, potNo);
+            if (from != null) ps.setTimestamp(i++, from);
+            ps.setInt(i++, limit);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) out.add(map(rs));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        java.util.Collections.reverse(out);
+        return out;
+    }
 }

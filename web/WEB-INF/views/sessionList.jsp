@@ -46,8 +46,7 @@
     <table class="grid">
         <tr>
             <th>#</th><th>Measured at</th><th>Pot no</th><th>Weight before</th>
-            <th>Weight after</th><th>Water ml</th><th>Label</th><th>Source</th><th></th>
-        </tr>
+            <th>Weight after</th><th>Water ml</th><th>He so giu nuoc</th><th>Label</th><th>Source</th><th></th>        </tr>
         <% for (PotSession r : rows) { %>
         <tr class="lb-<%= Web.esc(r.getLabelCode()) %>">
             <td><%= r.getSessionId() %></td>
@@ -56,6 +55,7 @@
             <td><%= r.getWeightBefore() %></td>
             <td><%= r.getWeightAfter() %></td>
             <td><%= r.getWaterMl() %></td>
+            <td><%= String.format("%.3f", r.getRetainRatio()) %></td>
             <td><span class="tag"><%= Web.esc(r.getLabelCode()) %></span></td>
             <td><%= r.isSample() ? "sample" : (r.getDeviceSeq() < 0 ? "manual" : "device") %></td>
             <td>
@@ -74,7 +74,7 @@
         </tr>
         <% } %>
         <% if (rows.isEmpty()) { %>
-        <tr><td colspan="9">Khong co phien nao.</td></tr>
+        <tr><td colspan="10">Khong co phien nao.</td></tr>
         <% } %>
     </table>
 

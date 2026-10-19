@@ -12,7 +12,7 @@ import java.sql.SQLException;
 public class DBContext {
 
     private static final String URL = 
-        "jdbc:sqlserver://localhost:1433;databaseName=UserManagementDB;encrypt=false";
+        "jdbc:sqlserver://localhost:1433;databaseName=PotDB;encrypt=false";
     private static final String USER = "sa";
     private static final String PASS = "123456";
 

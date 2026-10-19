@@ -83,8 +83,6 @@
                 <form method="post" action="<%= ctx %>/alerts/update">
                     <input type="hidden" name="id" value="<%= a.getAlertId() %>">
                     <input type="hidden" name="page" value="<%= cur %>">
-                    <input type="hidden" name="status_filter" value="">
-                    <input type="hidden" name="severity_filter" value="">
                     <select name="status">
                         <option value="ACKED">Xac nhan (dung)</option>
                         <option value="REJECTED">Tu choi (bao nham)</option>
