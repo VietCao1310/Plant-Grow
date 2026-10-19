@@ -14,7 +14,7 @@ public class DBContext {
     private static final String URL = 
         "jdbc:sqlserver://localhost:1433;databaseName=PotDB;encrypt=false";
     private static final String USER = "sa";
-    private static final String PASS = "123456";
+    private static final String PASS = "12345";
 
     static {
         try {
